@@ -1,0 +1,2 @@
+# Write a program that accepts two integer numbers from the user
+ and calculates their multiplication. Print the final result to the console
