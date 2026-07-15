@@ -1,25 +1,28 @@
-print("========= BANK MANAGEMENT SYSTEM =========")
 account=[]
 
 def create_account():
-    CNIC = input("Enter your CNIC number: ")
+    account_no = input("Enter your Account number: ")
+    cnic = input("Enter your CNIC number: ")
     for accounts in account:
-        if accounts['cnic'] == CNIC:
-            print("Account already Created for this CNIC")
+        if accounts['Account_no'] == account_no:
+            print("Account Number already exists.")
             return
-    account_no = input("Enter your account_number")
+        if accounts["cnic"] == cnic:
+            print("CNIC already exists.")
+            return
+    
     name = input("Enter your Name: ")
-    phone = input("Enter your Phone number")
+    phone = input("Enter your Phone number: ")
     balance = int(input("Enter Initial Balance: "))
 
-    create_account_data = {
-        "cnic" : CNIC,
+    new_account = {
         "Account_no" : account_no,
+        "cnic" : cnic,
         "name"  : name,
         "Phone" : phone,
         "balance" : balance
     }
-    account.append(create_account_data)
+    account.append(new_account)
     print("Created account sccessfully")
 
 
@@ -28,91 +31,157 @@ def view_accounts():
         print("No Account Created")
         return
     for accounts in account:
-        print(f"CNIC : {accounts['cnic']}")
-        print(f"Account_no : {accounts['Account_no']}")
-        print(f"name : {accounts['name']}")
-        print(f"Phone : {accounts['Phone']}")
-        print(f"balance : {accounts['balance']}")
-        print("-" * 50)
+        print("-" * 40)
+        print(f"Account Number : {accounts['Account_no']}")
+        print(f"CNIC           : {accounts['cnic']}")
+        print(f"Name           : {accounts['name']}")
+        print(f"Phone          : {accounts['Phone']}")
+        print(f"Balance        : {accounts['balance']}")
+        print("-" * 40)
 
 
 def search_account():
     if len(account) == 0:
         print("No Account Created")
         return
-    CNIC = input("Enter the CNIC number: ")
+    cnic = input("Enter the CNIC number: ")
     for accounts in account:
-        if accounts['cnic'] == CNIC:
-            print(f"CNIC : {accounts['cnic']}")
-            print(f"Account_no : {accounts['Account_no']}")
-            print(f"name : {accounts['name']}")
-            print(f"Phone : {accounts['Phone']}")
-            print(f"balance : {accounts['balance']}")
-            print("-" * 50)
+        if accounts['cnic'] == cnic:
+            print(f"Account Number : {accounts['Account_no']}")
+            print(f"CNIC           : {accounts['cnic']}")
+            print(f"Name           : {accounts['name']}")
+            print(f"Phone          : {accounts['Phone']}")
+            print(f"Balance        : {accounts['balance']}")
             return
+    print("Account not found.")
+            
 def deposit():
     if len(account) == 0:
         print("No Account Created")
         return
-    account_number = input("Enter your account number: ")
+    account_no = input("Enter your account number: ")
     for accounts in account:
-        if accounts['Account_no'] == account_number:
+        if accounts['Account_no'] == account_no:
             amount = int(input("Enter the amount for deposit: "))
             if amount <=0:
-                print("Amount must be greater than 0")
-            else:
-                accounts['balance'] += amount
-                print("Deposit successful.")
-                print(f"Updated balance {accounts['balance']}")    
+                print("Invalid Amount")
+                return
+    
+            accounts['balance'] += amount
+            print("Deposit successful.")
+            print(f"Updated balance {accounts['balance']}")
+            return
+        print("Account not found.")    
 
 
 def withdraw():
     if len(account) == 0:
         print("No Account Created")
         return
-    account_number = input("Enter your account number: ")
+    account_no = input("Enter your account number: ")
     for accounts in account:
-        if accounts['Account_no'] == account_number:
+        if accounts['Account_no'] == account_no:
             amount = int(input("Enter the amount for Withdraw: "))
             if amount <=0:
-                print("Amount must be greater than 0")
-            elif amount > accounts["balance"]:
+                print("Invalid Amount")
+                return
+            if amount > accounts["balance"]:
                 print("Insufficient balance")
-            else:
-                accounts['balance'] -= amount
-                print("Withdrawl Successful.")
-                print(f"Updated balance {accounts['balance']}")    
+                return
+            
+            accounts['balance'] -= amount
+            print("Withdrawl Successful.")
+            print(f"Current balance {accounts['balance']}")    
+            return
+
+    print("Account not found.")
+
+def transfer():
+    if len(account) == 0:
+        print("No Account Created")
+        return
+    sender_account = input("Enter the transfer account number: ")
+    receiver_account = input("Enter the Receive account number: ")
+    if sender_account == receiver_account:
+        print("Both accounts cannot be the same.")
+        return
+    transfer_amount = int(input("Enter transfer amount: "))
+    if transfer_amount <= 0:
+        print("Invalid Amount")
+        return
+
+    sender = None
+    receiver = None
+    for accounts in account:
+        if accounts["Account_no"] == sender_account:
+            sender = accounts
+        if accounts["Account_no"] == receiver_account:
+            receiver = accounts
+    if sender is None:
+        print("Sender account not found.")
+        return
+        
+    if receiver is None:
+        print("Receiver account not found.")
+        return
+        
+
+    if sender["balance"] < transfer_amount:
+        print("Insufficient balance.")
+        return
+    sender["balance"] -= transfer_amount
+    receiver["balance"] += transfer_amount
+
+    print("Transfer Successful!")
+    print(f"Sender Balance   : {sender['balance']}")
+    print(f"Receiver Balance : {receiver['balance']}")
+
+
+def update_account():
+    if len(account) == 0:
+        print("No Account Created")
+        return
+    account_no  = input("Enter Account number : ")
+    name = input("Enter your new Name: ")
+    phone = input("Enter your new Phone number")
+    for accounts in account:
+        if accounts["Account_no"] == account_no:
+            accounts['name'] = name
+            accounts['Phone'] = phone
+            print("Account details updated")
+            return
+    print("Account not found.")
     
 
 
-create_account()
-view_accounts()
-search_account()
-deposit()
-view_accounts()
-withdraw()
-view_accounts()
-
-def transfer():
-    pass
-
-def update_account():
-    pass
-
 def delete_account():
-    pass
+    if len(account) == 0:
+        print("No Account Created")
+        return
+    account_no  = input("Enter Account number to Delete: ")
+    for accounts in account:
+        if accounts['Account_no'] == account_no:
+            account.remove(accounts)
+        print("Account deleted successfully.")
+        return
+    print("Account not found.")    
+
 
 def check_balance():
-    pass
+    if len(account) == 0:
+        print("No Account Created")
+        return
+    account_no  = input("Enter Account number to Check Balance: ")
+    for accounts in account:
+        if accounts['Account_no'] == account_no:
+            
+            print(f"Account Holder : {accounts['name']}")
+            print(f"Current Balance : {accounts['balance']}")
+            return
+    print("No account Found")
+    
 
-
-
-
-
-
-
-
-# while True:
+while True:
     print("""
 ========= BANK MANAGEMENT SYSTEM =========
 
@@ -129,3 +198,39 @@ def check_balance():
 
 ==========================================
 """)
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        create_account()
+
+    elif choice == "2":
+        view_accounts()
+
+    elif choice == "3":
+        search_account()
+
+    elif choice == "4":
+        deposit()
+
+    elif choice == "5":
+        withdraw()
+
+    elif choice == "6":
+        transfer()
+
+    elif choice == "7":
+        update_account()
+
+    elif choice == "8":
+        delete_account()
+
+    elif choice == "9":
+        check_balance()
+
+    elif choice == "10":
+        print("Thank you for using Bank Management System.")
+        break
+
+    else:
+        print("Invalid Choice!")
