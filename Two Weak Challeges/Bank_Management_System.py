@@ -1,8 +1,9 @@
 account=[]
 
 def create_account():
-    account_no = input("Enter your Account number: ")
-    cnic = input("Enter your CNIC number: ")
+    print("\n🏦 ----- Create Account -----")
+    account_no = input("🆔 Enter Account Number:")
+    cnic = input("🪪 Enter CNIC:")
     for accounts in account:
         if accounts['Account_no'] == account_no:
             print("Account Number already exists.")
@@ -11,9 +12,9 @@ def create_account():
             print("CNIC already exists.")
             return
     
-    name = input("Enter your Name: ")
-    phone = input("Enter your Phone number: ")
-    balance = int(input("Enter Initial Balance: "))
+    name = input("👤 Enter Name:")
+    phone = input("📞 Enter Phone Number:")
+    balance = int(input("💰 Enter Initial Balance:"))
 
     new_account = {
         "Account_no" : account_no,
@@ -23,7 +24,7 @@ def create_account():
         "balance" : balance
     }
     account.append(new_account)
-    print("Created account sccessfully")
+    print("✅ Account created successfully.")
 
 
 def view_accounts():
@@ -150,7 +151,7 @@ def update_account():
             accounts['Phone'] = phone
             print("Account details updated")
             return
-    print("Account not found.")
+    print("❌ Account not found.")
     
 
 
@@ -162,9 +163,9 @@ def delete_account():
     for accounts in account:
         if accounts['Account_no'] == account_no:
             account.remove(accounts)
-            print("Account deleted successfully.")
+            print("🗑️ Account deleted successfully.")
             return
-    print("Account not found.")    
+    print("❌ Account not found.")
 
 
 def check_balance():
