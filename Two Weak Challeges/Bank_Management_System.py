@@ -28,31 +28,33 @@ def create_account():
 
 
 def view_accounts():
+    print("\n📋 ----- Account Details -----")
     if len(account) == 0:
         print("No Account Created")
         return
     for accounts in account:
         print("-" * 40)
-        print(f"Account Number : {accounts['Account_no']}")
-        print(f"CNIC           : {accounts['cnic']}")
-        print(f"Name           : {accounts['name']}")
-        print(f"Phone          : {accounts['Phone']}")
-        print(f"Balance        : {accounts['balance']}")
+        print(f"🆔 Account Number :  {accounts['Account_no']}")
+        print(f"🪪 CNIC :            {accounts['cnic']}")
+        print(f"👤 Name :           {accounts['name']}")
+        print(f"📞 Phone :{accounts['Phone']}")
+        print(f"📞 Phone :         {accounts['balance']}")
         print("-" * 40)
 
 
 def search_account():
+    print("\n🔍 ----- Search Account -----")
     if len(account) == 0:
         print("No Account Created")
         return
     cnic = input("Enter the CNIC number: ")
     for accounts in account:
         if accounts['cnic'] == cnic:
-            print(f"Account Number : {accounts['Account_no']}")
-            print(f"CNIC           : {accounts['cnic']}")
-            print(f"Name           : {accounts['name']}")
-            print(f"Phone          : {accounts['Phone']}")
-            print(f"Balance        : {accounts['balance']}")
+            print(f"🆔 Account Number :  {accounts['Account_no']}")
+        print(f"🪪 CNIC :            {accounts['cnic']}")
+        print(f"👤 Name :           {accounts['name']}")
+        print(f"📞 Phone :{accounts['Phone']}")
+        print(f"📞 Phone :         {accounts['balance']}")
             return
     print("Account not found.")
             
