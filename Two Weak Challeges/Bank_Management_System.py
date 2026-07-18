@@ -55,10 +55,11 @@ def search_account():
         print(f"👤 Name :           {accounts['name']}")
         print(f"📞 Phone :{accounts['Phone']}")
         print(f"📞 Phone :         {accounts['balance']}")
-            return
-    print("Account not found.")
+        return
+    print("❌ Account not found.")
             
 def deposit():
+    print("\n💵 ----- Deposit Money -----")
     if len(account) == 0:
         print("No Account Created")
         return
@@ -78,6 +79,7 @@ def deposit():
 
 
 def withdraw():
+    print("\n💸 ----- Withdraw Money -----")
     if len(account) == 0:
         print("No Account Created")
         return
@@ -100,6 +102,7 @@ def withdraw():
     print("Account not found.")
 
 def transfer():
+    print("\n🔄 ----- Transfer Money -----")
     if len(account) == 0:
         print("No Account Created")
         return
@@ -141,6 +144,7 @@ def transfer():
 
 
 def update_account():
+    print("\n✏️ ----- Update Account -----")
     if len(account) == 0:
         print("No Account Created")
         return
@@ -158,6 +162,7 @@ def update_account():
 
 
 def delete_account():
+    print("\n🗑️ ----- Delete Account -----")
     if len(account) == 0:
         print("No Account Created")
         return
@@ -171,6 +176,7 @@ def delete_account():
 
 
 def check_balance():
+    print("\n💳 ----- Check Balance -----")
     if len(account) == 0:
         print("No Account Created")
         return
@@ -232,7 +238,11 @@ while True:
         check_balance()
 
     elif choice == "10":
-        print("Thank you for using Bank Management System.")
+        print("==================================================
+            🙏 Thank you for using Bank Management System.
+            💻 Developed by Abdul Haseeb
+            🌟 Keep Learning, Keep Coding!
+                ==================================================")
         break
 
     else:
