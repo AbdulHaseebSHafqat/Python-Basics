@@ -13,7 +13,7 @@ def create_account():
             return
     
     name = input("👤 Enter Name:")
-    phone = input("📞 Enter Phone Number:")
+    phone = float(input("📞 Enter Phone Number:"))
     balance = int(input("💰 Enter Initial Balance:"))
 
     new_account = {
