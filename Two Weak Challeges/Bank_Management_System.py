@@ -162,8 +162,8 @@ def delete_account():
     for accounts in account:
         if accounts['Account_no'] == account_no:
             account.remove(accounts)
-        print("Account deleted successfully.")
-        return
+            print("Account deleted successfully.")
+            return
     print("Account not found.")    
 
 
