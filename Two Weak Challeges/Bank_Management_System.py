@@ -2,7 +2,7 @@ account=[]
 
 def create_account():
     print("\n🏦 ----- Create Account -----")
-    account_no = input("🆔 Enter Account Number:")
+    account_no = input("🆔 Enter Account Number: ")
     cnic = input("🪪 Enter CNIC:")
     for accounts in account:
         if accounts['Account_no'] == account_no:
@@ -12,8 +12,8 @@ def create_account():
             print("⚠️ CNIC already exists.")
             return
     
-    name = input("👤 Enter Name:")
-    phone = input("📞 Enter Phone Number:")
+    name = input("👤 Enter Name: ")
+    phone = input("📞 Enter Phone Number: ")
     balance = float(input("💰 Enter Initial Balance:"))
 
     new_account = {
