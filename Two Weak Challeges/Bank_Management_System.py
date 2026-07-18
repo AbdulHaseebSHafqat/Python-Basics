@@ -6,10 +6,10 @@ def create_account():
     cnic = input("🪪 Enter CNIC:")
     for accounts in account:
         if accounts['Account_no'] == account_no:
-            print("Account Number already exists.")
+            print("⚠️ Account Number already exists.")
             return
         if accounts["cnic"] == cnic:
-            print("CNIC already exists.")
+            print("⚠️ CNIC already exists.")
             return
     
     name = input("👤 Enter Name:")
@@ -30,90 +30,92 @@ def create_account():
 def view_accounts():
     print("\n📋 ----- Account Details -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
     for accounts in account:
         print("-" * 40)
         print(f"🆔 Account Number :  {accounts['Account_no']}")
-        print(f"🪪 CNIC :            {accounts['cnic']}")
-        print(f"👤 Name :           {accounts['name']}")
-        print(f"📞 Phone :{accounts['Phone']}")
-        print(f"📞 Phone :         {accounts['balance']}")
+        print(f"🪪 CNIC           :  {accounts['cnic']}")
+        print(f"👤 Name           :  {accounts['name']}")
+        print(f"📞 Phone          :  {accounts['Phone']}")
+        print(f"💰 Balance        :  {accounts['balance']}")
         print("-" * 40)
 
 
 def search_account():
     print("\n🔍 ----- Search Account -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
-    cnic = input("Enter the CNIC number: ")
+    cnic = input("🔍 Enter the CNIC number: ")
     for accounts in account:
         if accounts['cnic'] == cnic:
-            print(f"🆔 Account Number :  {accounts['Account_no']}")
-        print(f"🪪 CNIC :            {accounts['cnic']}")
-        print(f"👤 Name :           {accounts['name']}")
-        print(f"📞 Phone :{accounts['Phone']}")
-        print(f"📞 Phone :         {accounts['balance']}")
-        return
+            print(f"🆔 Account Number  :     {accounts['Account_no']}")
+            print(f"🪪 CNIC            :     {accounts['cnic']}")
+            print(f"👤 Name            :     {accounts['name']}")
+            print(f"📞 Phone           :     {accounts['Phone']}")
+            print(f"📞 Phone           :     {accounts['balance']}")
+            return
     print("❌ Account not found.")
             
 def deposit():
     print("\n💵 ----- Deposit Money -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
-    account_no = input("Enter your account number: ")
+    account_no = input("🆔 Enter your account number: ")
     for accounts in account:
         if accounts['Account_no'] == account_no:
             amount = int(input("Enter the amount for deposit: "))
             if amount <=0:
-                print("Invalid Amount")
+                print("❌ Invalid Amount.")
                 return
     
             accounts['balance'] += amount
-            print("Deposit successful.")
-            print(f"Updated balance {accounts['balance']}")
+            print("✅ Deposit Successful!")
+            print(f"💰 Deposited Amount : {amount}")
+            print(f"🏦 Current Balance  : {accounts['balance']}")
             return
-    print("Account not found.")    
+    print("❌ Account not found.")    
 
 
 def withdraw():
     print("\n💸 ----- Withdraw Money -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
     account_no = input("Enter your account number: ")
     for accounts in account:
         if accounts['Account_no'] == account_no:
-            amount = int(input("Enter the amount for Withdraw: "))
+            amount = int(input("💸 Enter withdrawal amount: "))
             if amount <=0:
-                print("Invalid Amount")
+                print("❌ Invalid Amount.")
                 return
             if amount > accounts["balance"]:
-                print("Insufficient balance")
+                print("❌ Insufficient Balance.")
                 return
             
             accounts['balance'] -= amount
-            print("Withdrawl Successful.")
-            print(f"Current balance {accounts['balance']}")    
+            print("✅ Withdrawal Successful!")
+            print(f"💸 Withdrawn : {amount}")
+            print(f"🏦 Remaining Balance : {accounts['balance']}")
             return
 
-    print("Account not found.")
+    print("❌ Account not found.")
 
 def transfer():
     print("\n🔄 ----- Transfer Money -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
-    sender_account = input("Enter the transfer account number: ")
-    receiver_account = input("Enter the Receive account number: ")
+    sender_account = input("🆔 Enter sender account number: ")
+    receiver_account = input("🆔 Enter receiver account number: ")
     if sender_account == receiver_account:
-        print("Both accounts cannot be the same.")
+        print("⚠️ Sender and Receiver accounts cannot be the same.")
         return
-    transfer_amount = int(input("Enter transfer amount: "))
+    transfer_amount = int(input("💸 Enter transfer amount: "))
     if transfer_amount <= 0:
-        print("Invalid Amount")
+        print("❌ Invalid Amount.")
         return
 
     sender = None
@@ -124,38 +126,39 @@ def transfer():
         if accounts["Account_no"] == receiver_account:
             receiver = accounts
     if sender is None:
-        print("Sender account not found.")
+        print("❌ Sender account not found.")
         return
         
     if receiver is None:
-        print("Receiver account not found.")
+        print("❌ Receiver account not found.")
         return
         
 
     if sender["balance"] < transfer_amount:
-        print("Insufficient balance.")
+        print("❌ Insufficient Balance.")
         return
     sender["balance"] -= transfer_amount
     receiver["balance"] += transfer_amount
 
-    print("Transfer Successful!")
-    print(f"Sender Balance   : {sender['balance']}")
-    print(f"Receiver Balance : {receiver['balance']}")
+    print("✅ Transfer Successful!")
+    print(f"💸 {transfer_amount} transferred successfully.")
+    print(f"👤 Sender Balance   : {sender['balance']}")
+    print(f"👤 Receiver Balance : {receiver['balance']}")
 
 
 def update_account():
     print("\n✏️ ----- Update Account -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
-    account_no  = input("Enter Account number : ")
+    account_no = input("🆔 Enter account number: ")
     name = input("Enter your new Name: ")
     phone = input("Enter your new Phone number")
     for accounts in account:
         if accounts["Account_no"] == account_no:
             accounts['name'] = name
             accounts['Phone'] = phone
-            print("Account details updated")
+            print("✅ Account Updated Successfully!")
             return
     print("❌ Account not found.")
     
@@ -164,13 +167,13 @@ def update_account():
 def delete_account():
     print("\n🗑️ ----- Delete Account -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
     account_no  = input("Enter Account number to Delete: ")
     for accounts in account:
         if accounts['Account_no'] == account_no:
             account.remove(accounts)
-            print("🗑️ Account deleted successfully.")
+            print("✅🗑️ Account Deleted Successfully!")
             return
     print("❌ Account not found.")
 
@@ -178,37 +181,42 @@ def delete_account():
 def check_balance():
     print("\n💳 ----- Check Balance -----")
     if len(account) == 0:
-        print("No Account Created")
+        print("📂 No Account Created.")
         return
     account_no  = input("Enter Account number to Check Balance: ")
     for accounts in account:
         if accounts['Account_no'] == account_no:
             
-            print(f"Account Holder : {accounts['name']}")
-            print(f"Current Balance : {accounts['balance']}")
+            print("="*40)
+            print(f"👤 Account Holder : {accounts['name']}")
+            print(f"🆔 Account Number : {accounts['Account_no']}")
+            print(f"💰 Current Balance: {accounts['balance']}")
+            print("="*40)
             return
-    print("No account Found")
+    print("❌ Account not found.")
     
 
 while True:
     print("""
-========= BANK MANAGEMENT SYSTEM =========
+🏦========================================🏦
+        BANK MANAGEMENT SYSTEM
+🏦========================================🏦
 
-1. Create Account
-2. View All Accounts
-3. Search Account
-4. Deposit Money
-5. Withdraw Money
-6. Transfer Money
-7. Update Account
-8. Delete Account
-9. Check Balance
-10. Exit
+1️⃣  Create Account
+2️⃣  View Accounts
+3️⃣  Search Account
+4️⃣  Deposit Money
+5️⃣  Withdraw Money
+6️⃣  Transfer Money
+7️⃣  Update Account
+8️⃣  Delete Account
+9️⃣  Check Balance
+🔟 Exit
 
-==========================================
+🏦========================================🏦
 """)
 
-    choice = input("Enter your choice: ")
+    choice = input("👉 Enter your choice: ")
 
     if choice == "1":
         create_account()
@@ -238,12 +246,13 @@ while True:
         check_balance()
 
     elif choice == "10":
-        print("==================================================
+        print("""==================================================
             🙏 Thank you for using Bank Management System.
-            💻 Developed by Abdul Haseeb
-            🌟 Keep Learning, Keep Coding!
-                ==================================================")
+            💙 Developed by Abdul Haseeb
+            🚀 Keep Learning | Keep Coding
+            🐍 Python Console Project
+            ==================================================""")
         break
 
     else:
-        print("Invalid Choice!")
+        print("❌ Invalid Choice! Please try again.")
