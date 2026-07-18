@@ -35,7 +35,7 @@ def view_accounts():
     for accounts in account:
         print("-" * 40)
         print(f"🆔 Account Number :  {accounts['Account_no']}")
-        print(f"🪪 CNIC           :  {accounts['cnic']}")
+        print(f"🪪 CNIC            :  {accounts['cnic']}")
         print(f"👤 Name           :  {accounts['name']}")
         print(f"📞 Phone          :  {accounts['Phone']}")
         print(f"💰 Balance        :  {accounts['balance']}")
@@ -51,10 +51,10 @@ def search_account():
     for accounts in account:
         if accounts['cnic'] == cnic:
             print(f"🆔 Account Number  :     {accounts['Account_no']}")
-            print(f"🪪 CNIC            :     {accounts['cnic']}")
+            print(f"🪪  CNIC            :     {accounts['cnic']}")
             print(f"👤 Name            :     {accounts['name']}")
             print(f"📞 Phone           :     {accounts['Phone']}")
-            print(f"💰 Balance          :     {accounts['balance']}")
+            print(f"💰 Balance         :     {accounts['balance']}")
             return
     print("❌ Account not found.")
             
