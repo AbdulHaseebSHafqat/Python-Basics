@@ -54,7 +54,7 @@ def search_account():
             print(f"🪪 CNIC            :     {accounts['cnic']}")
             print(f"👤 Name            :     {accounts['name']}")
             print(f"📞 Phone           :     {accounts['Phone']}")
-            print(f"💰 Balanc          :     {accounts['balance']}")
+            print(f"💰 Balance          :     {accounts['balance']}")
             return
     print("❌ Account not found.")
             
